@@ -10,3 +10,5 @@ This repository has the changes indicated by Tom Henderson.
 Instead of running `./configure LIBS="-framework CoreFoundation"` inside the `ns-2.36` directory, I modified the `install` file. This way, running `./install` builds and installs everything.
 
 So the only things that change (on top of the other steps): finish renaming VERSION to VERSION.txt in the other `Makefile.in`s + add `LIBS="-framework CoreFoundation" to the `install` file.
+
+If you want to do everything by yourself, here is the initial source code: [(https://www.nsnam.org/release/ns-2/ns-allinone-2.36.rc2.tar.gz)].
