@@ -12,6 +12,8 @@ Instead of running `./configure LIBS="-framework CoreFoundation"` inside the `ns
 
 So the only things that change (on top of the other steps): finish renaming VERSION to VERSION.txt in the other `Makefile.in`s + add `LIBS="-framework CoreFoundation"` to the `install` file.
 
+##### There's an issue where if one of the parent folders contains spaces, the installation fails for some reason.
+
 If you want to do everything by yourself, here is the initial source code: [(https://www.nsnam.org/release/ns-2/ns-allinone-2.36.rc2.tar.gz)].
 
 
