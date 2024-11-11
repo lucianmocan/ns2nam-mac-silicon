@@ -51,7 +51,7 @@
 #ifdef STDC_HEADERS
 #include <stddef.h>
 #else
-typedef int ptrdiff_t;
+typedef long ptrdiff_t;
 #endif
 
 /*
