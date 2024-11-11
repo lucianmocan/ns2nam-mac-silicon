@@ -236,11 +236,6 @@ setup_floating_point_environment()
 int
 Tcl_AppInit(Tcl_Interp *interp)
 {
-#ifdef MEMDEBUG_SIMULATIONS
-        extern MemTrace *globalMemTrace;
-        globalMemTrace = new MemTrace;
-#endif
-
 	setup_floating_point_environment();
        
 	if (Tcl_Init(interp) == TCL_ERROR ||

@@ -158,9 +158,9 @@ $(GEN_DIR)nam_tcl.cc: $(NAM_TCL_LIB)
 	$(RM) $@
 	$(TCLSH) bin/tcl-expand.tcl tcl/nam-lib.tcl | $(TCL2C) et_nam > $@
 
-$(GEN_DIR)version.c: VERSION
+$(GEN_DIR)version.c: VERSION.txt
 	$(RM) $@
-	$(TCLSH) bin/string2c.tcl version < VERSION > $@
+	$(TCLSH) bin/string2c.tcl version < VERSION.txt > $@
 
 install: force
 	$(INSTALL) -m 755 nam $(DESTDIR)$(BINDEST)
@@ -172,7 +172,7 @@ distclean:
 	$(RM) $(CLEANFILES) Makefile config.cache config.log config.status
 
 tar:	force
-	tar=$(TAR_PREFIX)-nam-`cat VERSION`.tar.gz ; \
+	tar=$(TAR_PREFIX)-nam-`cat VERSION.txt`.tar.gz ; \
 	rm -f $$tar ; \
 	tar cfhF -  $(TAR) | gzip -c > $$tar
 
@@ -181,8 +181,8 @@ depend: $(SRC)
 
 srctar:
 	@cwd=`pwd` ; dir=`basename $$cwd` ; \
-	    name=nam-`cat VERSION | tr A-Z a-z` ; \
-	    tar=nam-src-`cat VERSION`.tar.gz ; \
+	    name=nam-`cat VERSION.txt | tr A-Z a-z` ; \
+	    tar=nam-src-`cat VERSION.txt`.tar.gz ; \
 	    list="" ; \
 	    for i in `cat FILES` ; do list="$$list $$name/$$i" ; done; \
 	    echo \

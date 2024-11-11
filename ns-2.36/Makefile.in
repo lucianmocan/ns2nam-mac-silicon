@@ -528,9 +528,9 @@ NS_TCL_LIB = \
 $(GEN_DIR)ns_tcl.cc: $(NS_TCL_LIB)
 	$(TCLSH) bin/tcl-expand.tcl tcl/lib/ns-lib.tcl @V_NS_TCL_LIB_STL@ | $(TCL2C) et_ns_lib > $@
 
-$(GEN_DIR)version.c: VERSION
+$(GEN_DIR)version.c: VERSION.txt
 	$(RM) $@
-	$(TCLSH) bin/string2c.tcl version_string < VERSION > $@
+	$(TCLSH) bin/string2c.tcl version_string < VERSION.txt > $@
 
 $(GEN_DIR)ptypes.cc: common/ptypes2tcl common/packet.h
 	./common/ptypes2tcl > $@
@@ -598,8 +598,8 @@ depend: $(SRC)
 
 srctar:
 	@cwd=`pwd` ; dir=`basename $$cwd` ; \
-	    name=ns-`cat VERSION | tr A-Z a-z` ; \
-	    tar=ns-src-`cat VERSION`.tar.gz ; \
+	    name=ns-`cat VERSION.txt | tr A-Z a-z` ; \
+	    tar=ns-src-`cat VERSION.txt`.tar.gz ; \
 	    list="" ; \
 	    for i in `cat FILES` ; do list="$$list $$name/$$i" ; done; \
 	    echo \

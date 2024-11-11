@@ -215,15 +215,15 @@ depend:
 	$(MKDEP) $(INCLUDES) $(DEFINE) $(SRC)
 
 tar:	force
-	tar=tclcl-`cat VERSION`-@V_TAR_TARGET@.tar.gz ; \
+	tar=tclcl-`cat VERSION.txt`-@V_TAR_TARGET@.tar.gz ; \
 	rm -f $$tar ; \
 	@V_TARCMD@ - README CHANGES.html @V_TAR_EXTRA@ $(ALL) | \
 		gzip -c > $$tar
 
 srctar: force
 	@cwd=`pwd` ; dir=`basename $$cwd` ; \
-	    name=tclcl-`cat VERSION | tr A-Z a-z` ; \
-	    tar=tclcl-src-`cat VERSION`.tar.gz ; \
+	    name=tclcl-`cat VERSION.txt | tr A-Z a-z` ; \
+	    tar=tclcl-src-`cat VERSION.txt`.tar.gz ; \
 	    list="" ; \
 	    for i in `cat FILES` ; do list="$$list $$name/$$i" ; done; \
 	    echo \
