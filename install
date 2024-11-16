@@ -189,6 +189,7 @@ NAMVER=1.15
 XGRAPHVER=12.2
 ZLIBVER=1.2.3
 DEI80211MRVER=1.1.4
+XCODE_VERSION=15.0
 
 # Get current path
 CUR_PATH=`pwd`
@@ -211,6 +212,9 @@ if  [ `uname` = "Darwin" ]; then
     test_darwin=true
     export CXXFLAGS="-std=c++11 -stdlib=libc++"
     export X_INCLUDES="--x-includes=/opt/X11/include --x-libraries=/opt/X11/lib"
+    echo "Switching to Xcode version at $XCODE_VERSION"
+    sudo xcode-select --switch "$XCODE_VERSION"
+    xcodebuild -version
 fi
 
 # A Cygwin install requires these packages:
