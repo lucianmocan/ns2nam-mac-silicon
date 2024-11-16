@@ -22,4 +22,5 @@ jobs:
 
     # Run the install script
     - name: Run install script
-      run: ./install
+      run: 
+        ./install_ubuntu
