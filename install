@@ -197,6 +197,7 @@ CUR_PATH=`pwd`
 ENABLE_GCC="--enable-gcc"
 X_INCLUDES=""
 
+
 echo "============================================================"
 echo "* Testing for Darwin (OS X) environment"
 echo "============================================================"
@@ -204,8 +205,11 @@ if  [ `uname` = "Darwin" ]; then
     echo "Darwin detected";
     export DYLD_LIBRARY_PATH=$CUR_PATH/tcl$TCLVER/unix:$CUR_PATH/tk$TKVER/unix:$DYLD_LIBRARY_PATH
     export LDFLAGS="-framework CoreFoundation"
+    export LIBS="-framework CoreFoundation"
+    export CXXFLAGS="-std=c++11 -stdlib=libc++"
     export ENABLE_GCC=""
     test_darwin=true
+    export CXXFLAGS="-std=c++11 -stdlib=libc++"
     export X_INCLUDES="--x-includes=/opt/X11/include --x-libraries=/opt/X11/lib"
 fi
 
@@ -544,9 +548,9 @@ if [ -f Makefile ] ; then
 fi
 
 if  [ "${test_cygwin}" = "true" ]; then
-        ./configure --x-libraries=/usr/X11R6/lib --x-includes=/usr/X11R6/include --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER LIBS="-framework CoreFoundation" || die "Ns configuration failed! Exiting ...";
+        ./configure --x-libraries=/usr/X11R6/lib --x-includes=/usr/X11R6/include --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER || die "Ns configuration failed! Exiting ...";
 else
-        ./configure --with-otcl=../otcl-$OTCLVER --with-tclcl=../tclcl-$TCLCLVER --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER LIBS="-framework CoreFoundation" || die "Ns configuration failed! Exiting ...";
+        ./configure --with-otcl=../otcl-$OTCLVER --with-tclcl=../tclcl-$TCLCLVER --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER CXXFLAGS="$CXXFLAGS" || die "Ns configuration failed! Exiting ...";
 fi
 
 if make
@@ -572,9 +576,9 @@ ln -s tclcl-$TCLCLVER tclcl
 cd ./nam-$NAMVER
 
 if  [ "${test_cygwin}" = "true" ]; then
-        ./configure --x-libraries=/usr/X11R6/lib --x-includes=/usr/X11R6/include --with-tclcl=$CUR_PATH/tclcl-$TCLCLVER  --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER LIBS="-framework CoreFoundation" || die "Nam configuration failed! Exiting ...";
+        ./configure --x-libraries=/usr/X11R6/lib --x-includes=/usr/X11R6/include --with-tclcl=$CUR_PATH/tclcl-$TCLCLVER  --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER || die "Nam configuration failed! Exiting ...";
 else
-        ./configure --with-otcl=../otcl-$OTCLVER --with-tclcl=../tclcl-$TCLCLVER --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER LIBS="-framework CoreFoundation" || die "Nam configuration failed! Exiting ...";
+        ./configure --with-otcl=../otcl-$OTCLVER --with-tclcl=../tclcl-$TCLCLVER --with-tcl-ver=$TCLVER --with-tk-ver=$TKVER CXXFLAGS="$CXXFLAGS" || die "Nam configuration failed! Exiting ...";
 fi
 
 if make
