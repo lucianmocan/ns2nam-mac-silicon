@@ -17,7 +17,8 @@ jobs:
     # Install XQuartz and X11 development libraries
     - name: Install X11
       run: |
-        brew install xquartz
+        sudo apt install libx11-dev xorg-dev
+        
 
     # Run the install script
     - name: Run install script
