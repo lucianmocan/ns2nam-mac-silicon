@@ -13,5 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: install
+
+    # Install XQuartz and X11 development libraries
+    - name: Install X11
+      run: |
+        brew install xquartz
+
+    # Run the install script
+    - name: Run install script
       run: ./install
