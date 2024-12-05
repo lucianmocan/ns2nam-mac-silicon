@@ -206,9 +206,9 @@ if  [ `uname` = "Darwin" ]; then
     export DYLD_LIBRARY_PATH=$CUR_PATH/tcl$TCLVER/unix:$CUR_PATH/tk$TKVER/unix:$DYLD_LIBRARY_PATH
     export LDFLAGS="-framework CoreFoundation"
     export LIBS="-framework CoreFoundation"
-    export CC=gcc-14
-    export CXX=g++-14
-    export ENABLE_GCC=""
+    #export CC=gcc-14
+    #export CXX=g++-14
+    #export ENABLE_GCC=""
     test_darwin=true
     export CXXFLAGS="-std=c++11 -stdlib=libc++"
     export X_INCLUDES="--x-includes=/opt/X11/include --x-libraries=/opt/X11/lib"
