@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C/C++ CI for macOS
 
 on:
   push:
@@ -8,19 +8,18 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: macos-13
 
     steps:
     - uses: actions/checkout@v4
 
-    # Install XQuartz and X11 development libraries
-    - name: Install X11
+    # Install XQuartz
+    - name: Install X11 (XQuartz)
       run: |
-        sudo apt install libx11-dev xorg-dev
-        
+        brew update
+        brew install xquartz
 
     # Run the install script
     - name: Run install script
-      run: 
-        ./install_ubuntu
+      run: |
+        ./install
