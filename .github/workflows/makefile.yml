@@ -1,0 +1,25 @@
+name: C/C++ CI for macOS
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Install XQuartz
+    - name: Install X11 (XQuartz)
+      run: |
+        brew update
+        brew install xquartz
+
+    # Run the install script
+    - name: Run install script
+      run: |
+        ./install
